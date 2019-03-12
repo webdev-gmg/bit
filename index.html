@@ -12,7 +12,7 @@
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
-        <script src ="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
     <meta charset="UTF-8">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,48 +21,127 @@
 </head>
 
 <body>
-    <div class = "container">
-            <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                      <h5 class="card-title">My Stats Today</h5>
-                      <h6 class="card-subtitle mb-2 text-muted"></h6>
-                      <label>Calories Out: </label><span class="card-text" id = "caloriesOut"></span><span class="card-text" id = "goalsCaloriesOut"></span>
-                      <br />
-                      <label>Food (Calories): </label><span class="card-text" id = "foodCalories"></span>
-                      <br />
-                      <label>Remaining (Calories): </label><span class="card-text" id = "remainingCalories"></span>
-                      <br />
-                      <!-- <a href="#" class="card-link">Card link</a>
-                      <a href="#" class="card-link">Another link</a> -->
-                    </div>
-                    <p id ="code"></p>
-                  </div>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
 
-    <form class="needs-validation" novalidate>
-        <div class="form-row">
-            <div class="col-md-4 mb-3">
-                <label for="validationCustom01">First name</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark"
-                    required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-                <label for="validationCustom01">Search Date</label>
-                <input type="date" id = "searchdate"class="form-control" id="validationCustom01" placeholder="Search Date" 
-                    required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Stats
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#searchdate">Search by Date</a>
+                            <a class="dropdown-item" href="#mybest">My Best</a>
+
+                            <a class="dropdown-item" href="#mylifetime">LifeTime Stats</a>
+                            <div class="dropdown-divider"></div>
+                        </div>
+                    </li>
+
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="date"  id="searchdate" placeholder="Search"
+                        aria-label="Search">
+                    <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >Search</button> -->
+                </form>
             </div>
-          
+        </nav>
+
+
+        <div class="card" style="width: 58rem;">
+            <div class="card-body">
+                <h4 class="card-title text-center">My Stats </h4>
+                <h6 id="dispDate" class="text-center"></h6>
+                <h6 class="card-subtitle mb-2 text-muted"></h6>
+                <hr />
+                <div class="jumbotron">
+                    <label>Calories Out: </label><span class="card-text" id="caloriesOut"></span><span class="card-text"
+                        id="goalsCaloriesOut"></span>
+                    <br />
+                    <label>Food (Calories): </label><span class="card-text" id="foodCalories"></span>
+                    <br />
+                    <label>Remaining (Calories): </label><span class="card-text" id="remainingCalories"></span>
+                    <br />
+                    <div class="progress">
+                            <div class="progress-bar bg-success" id  = "progress" role="progressbar"   aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                </div>
+                <!-- <a href="#" class="card-link">Card link</a>
+                      <a href="#" class="card-link">Another link</a> -->
+            </div>
+            <p id="code"></p>
         </div>
-        <!-- <button class="btn btn-primary" id="runStats" type="submit">My Activity</button> -->
-    </form>
-</div>
-<div>
-        <canvas id="myChart" width="400px" height="400px" style="border:1px solid"></canvas>
-</div>
+
+
+        <form class="needs-validation" novalidate>
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <!-- <label for="validationCustom01">First name</label>
+                    <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark"
+                        required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div> -->
+                    <!-- <div style="height:60px"></div>
+                    <label for="validationCustom01">Search Date</label>
+                    <input type="date" id="searchdate" class="form-control" id="validationCustom01" placeholder="Search Date"
+                        required> -->
+
+                </div>
+
+            </div>
+            <!-- <button class="btn btn-primary" id="runStats" type="submit">My Activity</button> -->
+        </form>
+        <div style="height:60px"></div>
+        <div>
+            <canvas id="myChart" width="400px" height="400px" style="border:1px solid"></canvas>
+        </div>
+        <div style="height:60px"></div>
+        <!-- My Best -->
+        <div class="card" style="width: 58rem;" id="mybest">
+            <div class="card-body">
+                <h4 class="card-title text-center">My Best Stats </h4>
+                <h6 class="card-subtitle mb-2 text-muted"></h6>
+                <label> Distance: </label><span class="card-text" id="totalDistanceDate"></span> : <span class="card-text"
+                    id="totalDistanceValue"></span>
+                <br />
+                <label> Steps: </label><span class="card-text" id="totalStepsDate"></span> : <span class="card-text" id="totalStepsValue"></span>
+                <br />
+                <!-- <a href="#" class="card-link">Card link</a>
+                          <a href="#" class="card-link">Another link</a> -->
+            </div>
+            <p id="code"></p>
+        </div>
+        <div style="height:60px"></div>
+        <!-- LifeTime -->
+        <div class="card" style="width: 58rem;">
+            <div class="card-body">
+                <h4 class="card-title text-center" id="mylifetime">My Lifetime Stats </h4>
+                <h6 class="card-subtitle mb-2 text-muted"></h6>
+                <label>Total Lifetime Distance: </label><span class="card-text" id="lifetimeDistanceValue"></span>
+                <br />
+                <label>Total Lifetime Steps: </label> <span class="card-text" id="lifetimeStepsValue"></span>
+                <br />
+                <!-- <a href="#" class="card-link">Card link</a>
+                              <a href="#" class="card-link">Another link</a> -->
+            </div>
+            <p id="code"></p>
+
+        </div>
+        <div style="height:500px"></div>
+    </div>
+
 </body>
 
 
@@ -88,6 +167,7 @@
 <script src="index.js"></script>
 <script src="code.js"></script>
 <script>
- 
+
 </script>
+
 </html>
