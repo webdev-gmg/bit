@@ -3,9 +3,36 @@ var statsDate="2019-03-12"
 var caloriesLeft = ""
 var goalsCaloriesOut=""
 var activityCalorie = ""
-var token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMkRLR1ciLCJzdWIiOiI1V1RYUTciLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJhY3QgcnNldCBybG9jIHJ3ZWkgcmhyIHJudXQgcnBybyByc2xlIiwiZXhwIjoxNTUyNDUyODM4LCJpYXQiOjE1NTI0MjQwMzh9.61sjy9Sxmd0rBTMLAZbwgKADc0l7_ojcW9bsfAJc1l4"
+var saved = []
+
+
+
+var token = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyMkRLR1ciLCJzdWIiOiI1V1RYUTciLCJpc3MiOiJGaXRiaXQiLCJ0eXAiOiJhY2Nlc3NfdG9rZW4iLCJzY29wZXMiOiJyc29jIHJhY3QgcnNldCBybG9jIHJ3ZWkgcmhyIHJudXQgcnBybyByc2xlIiwiZXhwIjoxNTUyNTIwMjg3LCJpYXQiOjE1NTI0OTE0ODd9.JKU9l-RbGkzqmHz9kwN9NfRoWPm-tBORvdVGPq2Wp2I"
 setInterval(activityStepsWeek(), 3000);
 setTimeout(runStats(statsDate),3000)
+$( document ).ready(function() {
+    console.log(saved)
+    $("#progress").width(100)
+    for(i=1;i<saved.length;i++)
+    {
+        $('#savedlogs').append(`<tr><td>${saved[i].Calories_Out}</td><td>${saved[i].Food_Calories}</td><td>${saved[i].date}</td></tr>`)
+    }
+  });
+
+    $("#push").on('click',function(){
+        saved.push({
+            "Calories_Out": $('#caloriesOut').text(),
+            "Food_Calories": $('#remainingCalories').text(),
+            "date":$('#dispDate').text()
+            
+        });
+        console.log(saved)
+        for(i=0;i<saved.length;i++)
+        {
+            $('#savedlogs').append(`<td>${saved[i].Calories_Out}</td><td>${saved[i].Food_Calories}</td><td>${saved[i].date}</td>`)
+        }
+    })
+
 //$('#runStats').on('click',runStats)
 $('#searchdate').on('change',function(){
     statsDate = $('#searchdate').val();
@@ -53,9 +80,7 @@ var settings = {
 
 }
 
-$( document ).ready(function() {
-    $("#progress").width(100)
-  });
+
 
 
 
@@ -270,3 +295,6 @@ function best(){
       });
     
     }
+
+
+  
